@@ -7,11 +7,12 @@ import com.example.jpalvarezl.abstractadapter.R
 import com.example.jpalvarezl.abstractadapter.base.ViewHolderItem
 import com.example.jpalvarezl.abstractadapter.model.TopHeader
 
-class TopHeaderViewHolder(private val view: View) : ViewHolderItem(view) {
+class TopHeaderViewHolder(view: View) : ViewHolderItem(view) {
+
+    private val subTitle: TextView = view.findViewById<TextView>(R.id.subTitle)
+    private val mainTitle: TextView = view.findViewById<TextView>(R.id.mainTitle)
 
     fun bind(topHeader: TopHeader) {
-        val mainTitle = view.findViewById<TextView>(R.id.mainTitle)
-        val subTitle = view.findViewById<TextView>(R.id.subTitle)
         mainTitle.text = topHeader.mainTitle
         subTitle.text = topHeader.subTitle
     }

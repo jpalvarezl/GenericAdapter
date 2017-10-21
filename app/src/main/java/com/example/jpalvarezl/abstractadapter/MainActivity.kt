@@ -2,6 +2,7 @@ package com.example.jpalvarezl.abstractadapter
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
 import com.example.jpalvarezl.abstractadapter.model.TopHeader
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val list = list as RecyclerView
+        list.layoutManager = LinearLayoutManager(this)
         val topheaders = arrayOf(TopHeader(), TopHeader(), TopHeader()).asList()
         val adapter = ConcreteAdapter(topheaders)
         list.adapter = adapter

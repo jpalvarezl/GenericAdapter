@@ -13,11 +13,12 @@ abstract class AbstractAdapter<T> : RecyclerView.Adapter<ViewHolderItem>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderItem {
         val inflater = LayoutInflater.from(parent.context)
-        return TopHeaderViewHolder(inflater.inflate(R.layout.top_header_layout, parent))
+        return TopHeaderViewHolder(inflater.inflate(layoutId(), parent, false))
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
+    abstract fun layoutId(): Int
 }
