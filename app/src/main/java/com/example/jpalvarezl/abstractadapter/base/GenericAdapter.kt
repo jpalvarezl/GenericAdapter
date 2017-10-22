@@ -17,12 +17,12 @@ class GenericAdapter<VH : BaseViewHolder<Any>>(var items: List<Any>) : RecyclerV
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VH {
         val inflater = LayoutInflater.from(parent?.context)
-        when (viewType) {
-            0 -> return TopHeaderViewHolder(inflater.inflate(R.layout.top_header_layout, parent, false)) as VH
-            1 -> return Header1ViewHolder(inflater.inflate(R.layout.header1_layout, parent, false)) as VH
-            2 -> return Header2ViewHolder(inflater.inflate(R.layout.header2_layout, parent, false)) as VH
-            else -> return null as VH
-        }
+        return when (viewType) {
+            0 -> TopHeaderViewHolder(inflater.inflate(R.layout.top_header_layout, parent, false))
+            1 -> Header1ViewHolder(inflater.inflate(R.layout.header1_layout, parent, false))
+            2 -> Header2ViewHolder(inflater.inflate(R.layout.header2_layout, parent, false))
+            else -> null
+        } as VH
     }
 
     override fun onBindViewHolder(holder: VH?, position: Int) {
