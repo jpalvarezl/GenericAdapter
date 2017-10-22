@@ -4,25 +4,35 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.jpalvarezl.abstractadapter.R
+import com.example.jpalvarezl.abstractadapter.items.Header1ViewHolder
+import com.example.jpalvarezl.abstractadapter.items.Header2ViewHolder
 import com.example.jpalvarezl.abstractadapter.items.TopHeaderViewHolder
-import java.util.*
+import com.example.jpalvarezl.abstractadapter.model.Header1
+import com.example.jpalvarezl.abstractadapter.model.Header2
+import com.example.jpalvarezl.abstractadapter.model.TopHeader
 
-class GenericAdapter<in T, VH : ViewHolderItem<T>> : RecyclerView.Adapter<VH>() {
-    private var items: List<T> = Collections.emptyList()
+class GenericAdapter<VH : BaseViewHolder<Any>>(var items: List<Any>) : RecyclerView.Adapter<VH>() {
+
+    override fun getItemCount(): Int = items.size
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VH {
+        val inflater = LayoutInflater.from(parent?.context)
+        when (viewType) {
+            0 -> return TopHeaderViewHolder(inflater.inflate(R.layout.top_header_layout, parent, false)) as VH
+            1 -> return Header1ViewHolder(inflater.inflate(R.layout.header1_layout, parent, false)) as VH
+            2 -> return Header2ViewHolder(inflater.inflate(R.layout.header2_layout, parent, false)) as VH
+            else -> return null as VH
+        }
+    }
 
     override fun onBindViewHolder(holder: VH?, position: Int) {
         holder?.bind(items[position])
     }
 
-    override fun getItemCount(): Int = items.size
-
-    @Suppress("UNCHECKED_CAST")
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VH {
-        val inflater = LayoutInflater.from(parent?.context)
-        return TopHeaderViewHolder(inflater.inflate(R.layout.top_header_layout, parent, false)) as VH
-    }
-
-    fun setItems(items: List<T>) {
-        this.items = items
+    override fun getItemViewType(position: Int): Int {
+        if (items[position] is TopHeader) return 0
+        if (items[position] is Header1) return 1
+        if (items[position] is Header2) return 2
+        return -1
     }
 }
