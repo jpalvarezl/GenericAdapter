@@ -16,24 +16,24 @@ class ViewHolderFactory : BaseViewHolderFactory() {
     override fun newViewHolderFromViewType(viewType: Int, parent: ViewGroup?): BaseViewHolder<Any> {
         val inflater = LayoutInflater.from(parent!!.context)
         return when (viewType) {
-            0 -> Header1ViewHolder(inflater.inflate(R.layout.header1_layout, parent, false))
-            1 -> TopHeaderViewHolder(inflater.inflate(R.layout.top_header_layout, parent, false))
-            2 -> Header2ViewHolder(inflater.inflate(R.layout.header2_layout, parent, false))
+            R.layout.header1_layout -> Header1ViewHolder(inflater.inflate(viewType, parent, false))
+            R.layout.top_header_layout -> TopHeaderViewHolder(inflater.inflate(viewType, parent, false))
+            R.layout.header2_layout -> Header2ViewHolder(inflater.inflate(viewType, parent, false))
             else -> null
         } as BaseViewHolder<Any>
     }
 
     override fun viewTypeFromViewHolder(viewHolder: BaseViewHolder<*>): Int {
-        if (viewHolder is Header1ViewHolder) return 0
-        if (viewHolder is TopHeaderViewHolder) return 1
-        if (viewHolder is Header2ViewHolder) return 2
+        if (viewHolder is Header1ViewHolder) return R.layout.header1_layout
+        if (viewHolder is TopHeaderViewHolder) return R.layout.top_header_layout
+        if (viewHolder is Header2ViewHolder) return R.layout.header2_layout
         return -1
     }
 
     override fun viewTypeFromItem(item: Any): Int {
-        if (item is Header1) return 0
-        if (item is TopHeader) return 1
-        if (item is Header2) return 2
+        if (item is Header1) return R.layout.header1_layout
+        if (item is TopHeader) return R.layout.top_header_layout
+        if (item is Header2) return R.layout.header2_layout
         return -1
     }
 }
