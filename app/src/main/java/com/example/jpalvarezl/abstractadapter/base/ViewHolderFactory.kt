@@ -3,7 +3,7 @@ package com.example.jpalvarezl.abstractadapter.base
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ViewHolderFactory(vararg private val binders: Binder<*, *>) {
+internal class ViewHolderFactory(private val binders: List<Binder<*, *>>) {
 
     fun newViewHolder(viewType: Int, parent: ViewGroup?): BaseViewHolder<*>? {
         binders.filter { it.handlesViewType(viewType) }

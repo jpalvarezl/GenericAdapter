@@ -3,9 +3,15 @@ package com.example.jpalvarezl.abstractadapter.base
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 
-class BaseAdapter(private val factory: ViewHolderFactory) : RecyclerView.Adapter<BaseViewHolder<Any>>() {
+class BaseAdapter
+private constructor(private val factory: ViewHolderFactory) : RecyclerView.Adapter<BaseViewHolder<Any>>() {
+
+    constructor(vararg binders: Binder<*, *>) : this(ViewHolderFactory(binders.toList()))
+
+    constructor(binders: List<Binder<*, *>>) : this(ViewHolderFactory(binders.toList()))
 
     private lateinit var items: List<*>
+
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) =
             factory.newViewHolder(viewType, parent) as BaseViewHolder<Any>
