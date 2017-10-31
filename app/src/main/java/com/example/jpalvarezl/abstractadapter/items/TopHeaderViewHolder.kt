@@ -11,8 +11,6 @@ class TopHeaderViewHolder(view: View?) : BaseViewHolder<TopHeader>(view) {
     private val subTitle: TextView = view!!.findViewById(R.id.subTitle)
     private val mainTitle: TextView = view!!.findViewById(R.id.mainTitle)
 
-    override fun handlesItem(item: Any): Boolean = item is TopHeader
-
     override fun bind(item: TopHeader) {
         mainTitle.text = item.mainTitle
         subTitle.text = item.subTitle
