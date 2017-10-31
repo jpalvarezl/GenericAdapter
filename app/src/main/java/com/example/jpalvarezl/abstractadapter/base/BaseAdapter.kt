@@ -7,7 +7,7 @@ class BaseAdapter(private val factory: ViewHolderFactory) : RecyclerView.Adapter
 
     private lateinit var items: List<*>
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<Any> =
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) =
             factory.newViewHolder(viewType, parent) as BaseViewHolder<Any>
 
     override fun onBindViewHolder(holder: BaseViewHolder<Any>?, position: Int) {
