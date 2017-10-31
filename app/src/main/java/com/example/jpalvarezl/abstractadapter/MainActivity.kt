@@ -18,9 +18,12 @@ class MainActivity : AppCompatActivity() {
 
         val list = list as RecyclerView
         list.layoutManager = LinearLayoutManager(this)
-        val elements = arrayOf(TopHeader(), Header1(), TopHeader(), Header2(), TopHeader(), TopHeader()).asList()
+        val elements = arrayOf(TopHeader(), Header1(), TopHeader(), Header2(), TopHeader(), TopHeader(), Header1(), TopHeader()).asList()
         val adapter = BaseAdapter(ViewHolderFactory())
         list.adapter = adapter
         adapter.setItems(elements)
+
+
+//        Binder(::TopHeaderViewHolder)
     }
 }

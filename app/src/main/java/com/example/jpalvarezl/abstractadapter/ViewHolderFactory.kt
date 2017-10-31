@@ -23,13 +23,6 @@ class ViewHolderFactory : BaseViewHolderFactory() {
         } as BaseViewHolder<Any>
     }
 
-    override fun viewTypeFromViewHolder(viewHolder: BaseViewHolder<*>): Int {
-        if (viewHolder is Header1ViewHolder) return R.layout.header1_layout
-        if (viewHolder is TopHeaderViewHolder) return R.layout.top_header_layout
-        if (viewHolder is Header2ViewHolder) return R.layout.header2_layout
-        return -1
-    }
-
     override fun viewTypeFromItem(item: Any): Int {
         if (item is Header1) return R.layout.header1_layout
         if (item is TopHeader) return R.layout.top_header_layout
